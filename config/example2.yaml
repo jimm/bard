@@ -1,0 +1,130 @@
+---
+tempo: 120                      # BPM, drums + bass can play 16ths
+drums:
+  patch:                        # Patch is always optional
+    bank_msb: 121               # Optional within a patch
+    bank_lsb: 0                 # Optional within a patch
+    program: 0                  # Required within a patch
+bass:
+  patch:
+    bank_msb: 121
+    bank_lsb: 8
+    program: 39
+  min_octave: 2                 # Optional, default is 0
+  max_octave: 3                 # Optional, default is 9
+track_sounds:
+  -
+    patch:                      # Piano 1
+      bank_msb: 121
+      bank_lsb: 0
+      program: 0
+    min_octave: 3
+    smooth_changes: false      # Optional, hold notes, default false
+  -
+    patch:                      # Detuned EP 1
+      bank_msb: 121
+      bank_lsb: 8
+      program: 4
+    min_octave: 4
+    smooth_changes: true
+  -
+    patch:                      # Funk Gt.
+      bank_msb: 121
+      bank_lsb: 8
+      program: 28
+    min_octave: 4
+    smooth_changes: false
+  -
+    patch:                      # Syn.Strings1
+      bank_msb: 121
+      bank_lsb: 0
+      program: 50
+    min_octave: 4
+    smooth_changes: true
+  -
+    patch:                      # Synth Brass1
+      bank_msb: 121
+      bank_lsb: 0
+      program: 62
+    min_octave: 4
+    smooth_changes: true
+score:
+  chords:                       # All nums are semitones; earlier in array, more likely to play
+    - &flat6
+      root: -4                  # Offset from C
+      bass: [0, 7, 0, 11, 0, 12, 4, 14, -2] # Semis in bass line
+      chord: [0, 7, 4, 11, 14]              # Semis in chord
+      beats: 4
+    - &five
+      root: -5
+      bass: [0, 7, 0, 10, 0, 12, 4, 14, -2]
+      chord: [0, 7, 4, 10, 14]
+      beats: 4
+    - &one
+      root: 0
+      bass: [0, 7, 0, 10, 0, 12, 3, 14, -2]
+      chord: [0, 7, 3, 10, 14]
+      beats: 4
+    - &seven
+      root: -2
+      bass: [0, 7, 0, 10, 0, 12, 4, 14, -2]
+      chord: [0, 7, 4, 10, 14]
+      beats: 2
+    -
+      root: 3
+      bass: [0, 7, 0, 10, 0, 12, 4, 14, -2]
+      chord: [0, 7, 4, 10, 14]
+      beats: 2
+    - *flat6
+    - *five
+    - *one
+    - *seven
+    -
+      root: -3
+      bass: [0, 7, 0, 10, 0, 12, 4, 14, -2]
+      chord: [0, 7, 4, 10, 14]
+      beats: 2
+  bass:
+    probability: [
+      0.95, 0.5, 0.75, 0.2,     # Each entry is % likelihood to play
+      0.95, 0.3, 0.75, 0.1,     # Each offset is a 16th note
+      0.95, 0.3, 0.75, 0.1,     # Pattern may be longer than 1 beat
+      0.95, 0.3, 0.75, 0.5      # Pattern must be in whole beats of 4 16ths
+      ]
+  drums:
+    probabilities:
+      kick: [
+        0.9, 0.5, 0.5, 0.2,
+        0.8, 0.2, 0.3, 0.1,
+        0.9, 0.2, 0.3, 0.1,
+        0.6, 0.2, 0.7, 0.4
+        ]
+      snare: [
+        0.2, 0.1, 0.1, 0.1,
+        0.9, 0.1, 0.1, 0.1,
+        ]
+      hh_closed: [
+        0.9, 0.3, 0.7, 0.1,
+        ]
+      hh_pedal: [
+        0.1, 0.1, 0.1, 0.5,
+        ]
+      crash: [
+        0.5, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0,
+        0.5, 0.0, 0.0, 0.0,
+        ]
+      tom: [
+        0.5, 0.0, 0.5, 0.0,
+        ]
+      clap: [
+        0.2, 0.0, 0.5, 0.0,
+        ]
+      cowbell: [
+        0.8, 0.0, 0.0, 0.0,
+      ]
